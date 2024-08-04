@@ -3,7 +3,7 @@ var redirect_uri = 'http://localhost:3000/';
 
 const handleLogin = () => {
     console.log("Login clicked!");
-
+    window.location.href = 'http://localhost:8080/login';
 }
 
 const Login = () => {
