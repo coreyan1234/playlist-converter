@@ -8,15 +8,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class SpotifyAuthController {
     private final String clientId = "0b30f0dcdb2e40dd9e173167b8c9f7f1";
-    private final String redirectUri = "http://localhost:8080/callback";
-    private final String state = generateRandomString(16); // TODO: Supposed to be a random string with 16 characters
+    private final String redirectUri = "http://localhost:3000/callback";
     private final String scope = "user-read-private user-read-email";
 
     @GetMapping("/login")
-    public RedirectView login() {
+    public RedirectView login(HttpSession session) {
+        String state = generateRandomString(16);
+        session.setAttribute("originalState", state);
+
         String authorizationUrl = UriComponentsBuilder.fromHttpUrl("https://accounts.spotify.com/authorize")
                 .queryParam("response_type", "code")
                 .queryParam("client_id", clientId)
