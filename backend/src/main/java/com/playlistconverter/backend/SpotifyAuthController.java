@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class SpotifyAuthController {
     private final String clientId = "0b30f0dcdb2e40dd9e173167b8c9f7f1";
-    private final String redirectUri = "http://localhost:3000/callback";
+    private final String redirectUri = "http://localhost:8080/callback";
     private final String scope = "user-read-private user-read-email";
 
     @GetMapping("/login")
