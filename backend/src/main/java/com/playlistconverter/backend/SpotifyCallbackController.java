@@ -69,6 +69,8 @@ public class SpotifyCallbackController {
                 Map<String, Object> responseBody = response.getBody();
                 String accessToken = (String) responseBody.get("access_token");
                 String refreshToken = (String) responseBody.get("refresh_token");
+                session.setAttribute("accessToken", accessToken);
+                session.setAttribute("refreshToken", refreshToken);
                 return new RedirectView("http://localhost:3000/?success=true");
             }
         }
